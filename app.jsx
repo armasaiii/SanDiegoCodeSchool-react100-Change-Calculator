@@ -20,25 +20,30 @@ class App extends Component {
   handleAmountReceived(event) {
     this.setState({amountReceived: event.target.value})
     }
-    
+  
   calculate() {
     let amountDue = (this.state.amountDue);
     let amountReceived = (this.state.amountReceived)
     let changeDue = (amountReceived - amountDue).toFixed(2)
-    // let changeDue = (this.state.amountReceived - this.state.amountDue).toFixed(2);
-    console.log(changeDue)
+    let dollars = Math.floor(changeDue)
+    let cents = Math.round((changeDue-dollars)*100)
+    let quarter = Math.floor(cents/25)    
+    let dime = Math.floor(cents/10)
+    let nickel = Math.floor(cents/5)
+    let penny = Math.floor(cents/1)
+    console.log(changeDue, cents, quarter, dime, nickel, penny)
     this.setState ({
-
-      twenty: (Math.floor(changeDue / 20).toFixed(2)),
-      
+      changeDue: changeDue,
+      twenties: (Math.floor(changeDue / 20).toFixed(2)),
       tens: (Math.floor((changeDue / 10) % 2).toFixed(2)),
-      // fives: (Math.floor((changeDue / 5) % 2).toFixed(2)),
-      // ones: (Math.floor(changeDue % 5).toFixed(2)),
-      // quarters: (Math.floor((changeDue * 100) / .25).toFixed(2)),
-      // dimes: (Math.floor((changeDue * 100) / .10).toFixed(2)),
-      // nickels: (Math.floor((changeDue * 100) / .5).toFixed(2)),
-      // pennies: (Math.floor(changeDue * 100) / 0.01).toFixed(2)
+      fives: (Math.floor((changeDue / 5) % 2).toFixed(2)),
+      ones: (Math.floor(changeDue % 5).toFixed(2)),
+      quarters: quarter,
+      dimes: cents - dime * 10,
+      nickels: cents - nickel * 5,
+      pennies: cents - penny * 1,
 })
+// console.log(twenties)
 }
 
   render() {
@@ -75,59 +80,53 @@ class App extends Component {
       
   <div className='container'>
     <div className="row">
-        <label>
-          Your total change due is..
+        <label className='cd'>
+          Your total change due is ${this.state.changeDue}
         </label>
-            <p 
-              className='changeDue' 
-              onChange={this.handleChangeDue}
-              value={this.state.changeDue}>
-                {this.state.changeDue}
-                </p>
         <hr/>
     </div>
 
     <div className='row'>
         <div className='col-md-2'>
-          <h3>Twenties</h3>
-            <p type='number' className='twenties'>{this.setState.twenties}</p>
+          <h4>Twenties</h4>
+            <p type='number' className='twenties'>{this.state.twenties}</p>
         </div>
 
         <div className='col-md-2'>
-          <h3>Tens</h3>
-            <p type='number' className='tens'>{this.setState.tens}</p>
+          <h4>Tens</h4>
+            <p type='number' className='tens'>{this.state.tens}</p>
         </div>
 
         <div className='col-md-2'>
-          <h3>Fives</h3>
-            <p type='number' className='fives'>{this.setState.fives}</p>
+          <h4>Fives</h4>
+            <p type='number' className='fives'>{this.state.fives}</p>
         </div>
 
         <div className='col-md-2'>
-          <h3>Ones</h3>
-            <p type='number' className='ones'>{this.setState.ones}</p>
+          <h4>Ones</h4>
+            <p type='number' className='ones'>{this.state.ones}</p>
         </div>
     </div>
 
     <div className='row'>
     <div className='col-md-2'>
-          <h3>Quarters</h3>
-            <p type='number' className='quarters'>{this.setState.quarters}</p>
+          <h4>Quarters</h4>
+            <p type='number' className='quarters'>{this.state.quarters}</p>
         </div>
 
         <div className='col-md-2'>
-          <h3>Dimes</h3>
-            <p type='number' className='dimes'>{this.setState.dimes}</p>
+          <h4>Dimes</h4>
+            <p type='number' className='dimes'>{this.state.dimes}</p>
         </div>
 
         <div className='col-md-2'>
-          <h3>Nickels</h3>
-            <p type='number' className='nickels'>{this.setState.nickels}</p>
+          <h4>Nickels</h4>
+            <p type='number' className='nickels'>{this.state.nickels}</p>
         </div>
 
         <div className='col-md-2'>
-          <h3>Pennies</h3>
-            <p type='number' className='pennies'>{this.setState.pennies}</p>
+          <h4>Pennies</h4>
+            <p type='number' className='pennies'>{this.state.pennies}</p>
         </div>
     </div>
   </div>

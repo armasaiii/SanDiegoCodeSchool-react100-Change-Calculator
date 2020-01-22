@@ -2,9 +2,14 @@
 
 .container-fluid {
     border: solid 2px black;
-    width: 75%;
+    width: 40%;
     margin: 5px;
     padding-bottom: 1em;
+    float:left;
+}
+
+.text-center {
+    color: whitesmoke;
 }
 
 .btn btn-default btn-block {
@@ -18,11 +23,20 @@ button {
 
 .container {
     border: solid 2px black;
-    width: 75%;
-    margin: 5px;
+    float:right;
+    width: 50%;
+    margin: auto;
+    margin-right: 1em;
     padding-bottom: 1em;
     color: aliceblue;
     padding-top: 1em;
+}
+
+.cd {
+    width: 100%;
+    background-color: #DFF0D8;
+    color: #8BAC8F;
+    padding-left: 1em;
 }
 
 .col-md-8 {
